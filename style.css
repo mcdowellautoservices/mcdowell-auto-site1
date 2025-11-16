@@ -1,2 +1,56 @@
 body { font-family: Arial; background: white; color: black; padding: 20px; }
 nav a { margin-right: 15px; color: red; text-decoration: none; }
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Body & Background */
+body {
+  background-color: #1f1f1f; /* dark grey */
+  color: #f5f5f5; /* light text */
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header */
+header {
+  background-color: #2c2c2c;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  color: #e63946; /* red accent */
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+/* Navigation */
+nav a {
+  color: #f5f5f5;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #e63946;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1f1f1f 100%);
+}
+
+.hero h2 {
+  color: #f5f5f5;
+  font-size: 2rem;
+  margin-bottom: 20px
