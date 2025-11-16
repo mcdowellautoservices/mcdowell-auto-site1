@@ -41,4 +41,45 @@
 </footer>
 
 <script>
-document.getElementById('repair-quote-form').addEve
+document.getElementById('repair-quote-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const vrm = document.getElementById('vrm').value.trim();
+  const postcode = document.getElementById('postcode').value.trim();
+  const resultsDiv = document.getElementById('quote-results');
+  resultsDiv.innerHTML = "<p>Fetching quote…</p>";
+
+  try {
+    const response = await fetch(`https://vehicledatabases.com/portal/key?vrm=${vrm}&postcode=${postcode}`, {
+      headers: {
+        'Authorization': 'Bearer 5b7def82c33b11f0a35c0242ac120002',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await response.json();
+
+    if (!data || !data.repairs) {
+      resultsDiv.innerHTML = "<p style='color:red;'>No quote available for this vehicle.</p>";
+      return;
+    }
+
+    let html = `<h3>Repair Quote for ${data.vehicle.make} ${data.vehicle.model}</h3>`;
+    html += "<ul>";
+    data.repairs.forEach(r => {
+      html += `<li>${r.name} - £${r.price}</li>`;
+    });
+    html += "</ul>";
+
+    html += `<button onclick="window.location.href='booking.html'">Book a Service</button>`;
+
+    resultsDiv.innerHTML = html;
+
+  } catch (err) {
+    console.error(err);
+    resultsDiv.innerHTML = "<p style='color:red;'>Error fetching quote. Please try again later.</p>";
+  }
+});
+</script>
+
+</body>
+</html>
